@@ -33,8 +33,12 @@ void TwelitePacket::sendPacket(Packet &packet) {
 }
 
 bool TwelitePacket::receivePacket(Packet &packet) {
-	if (_serial->available() < 6) return false;
-	if (_serial->read() != PACKET_HEADER) return false;
+	if (_serial->available() < 6) {
+		return false;
+	}
+	if (_serial->read() != PACKET_HEADER) {
+		return false;
+	}
 
 	packet.header = PACKET_HEADER;
 	packet.sender = _serial->read();
@@ -42,10 +46,14 @@ bool TwelitePacket::receivePacket(Packet &packet) {
 	packet.messageType = _serial->read();
 	packet.payloadLength = _serial->read();
 
-	if (packet.payloadLength > MAX_PAYLOAD_SIZE) return false;
+	if (packet.payloadLength > MAX_PAYLOAD_SIZE) {
+		return false;
+	}
 
 	for (int i = 0; i < packet.payloadLength; i++) {
-		if (!_serial->available()) return false;
+		if (!_serial->available()) {
+			return false;
+		}
 		packet.payload[i] = _serial->read();
 	}
 
@@ -54,7 +62,11 @@ bool TwelitePacket::receivePacket(Packet &packet) {
 	if (_serial->peek() == '\r') _serial->read();
 	if (_serial->peek() == '\n') _serial->read();
 
-	return (packet.checksum == calculateChecksum(packet));
+	if (packet.checksum != calculateChecksum(packet)) {
+		return false;
+	}
+
+	return true;
 }
 
 Packet TwelitePacket::makePacket(DEVICE_ID sender, DEVICE_ID receiver, MessageType messageType, uint8_t payloadLength, uint8_t *payload) {
