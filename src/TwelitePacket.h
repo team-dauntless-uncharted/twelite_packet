@@ -60,7 +60,17 @@ public:
 	/**
 	 * @brief コンストラクタ
 	 */
-	TwelitePacket() : _serial(nullptr) {}
+	TwelitePacket(int resetPin) : _serial(nullptr), _resetPin(resetPin) {}
+
+	/**
+	 * @brief Tweliteをoffにする
+	 */
+	void off();
+
+	/**
+	 * @brief Tweliteをoffにする
+	 */
+	void on();
 	
 	/**
 	 * @brief シリアル通信の初期化
@@ -105,6 +115,7 @@ public:
 
 private:
 	HardwareSerial *_serial;  // シリアル通信オブジェクトへのポインタ
+	int _resetPin;
 	
 	/**
 	 * @brief チェックサム計算（内部使用）
