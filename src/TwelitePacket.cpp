@@ -3,6 +3,19 @@
 namespace twelite {
 
 /**
+ * @brief Tweliteをoffにする
+ */
+void TwelitePacket::off() {
+	digitalWrite(_resetPin, LOW);
+	delay(100);
+}
+
+void TwelitePacket::on() {
+	digitalWrite(_resetPin, HIGH);
+	delay(100);
+}
+
+/**
  * @brief シリアル通信の初期化
  * 
  * 指定されたシリアルポートを指定のボーレートで初期化します。
@@ -11,6 +24,8 @@ namespace twelite {
  * @param baud 通信速度（例：9600, 38400, 115200）
  */
 void TwelitePacket::begin(HardwareSerial &serial, int baud) {
+	pinMode(_resetPin, OUTPUT);
+	delay(100);
 	_serial = &serial;
 	_serial->begin(baud);
 }
