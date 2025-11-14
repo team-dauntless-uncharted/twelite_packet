@@ -20,7 +20,6 @@ void TwelitePacket::begin(HardwareSerial &serial, int baud) {
 	pinMode(_resetPin, OUTPUT);
 	delay(100);
 	_serial = &serial;
-	_serial->begin(baud);
 }
 
 uint8_t TwelitePacket::calculateChecksum(const Packet &packet) {
