@@ -8,7 +8,7 @@
 
 #include <TwelitePacket.h>
 
-twelite::TwelitePacket tweliteModule;
+twelite::TwelitePacket tweliteModule(11);
 twelite::Packet pkt;
 
 void setup() {
@@ -16,7 +16,9 @@ void setup() {
 	Serial.begin(115200);
 	
 	// Twelite通信を115200bpsで初期化
-	tweliteModule.begin(Serial2, 115200);
+	Serial2.begin(115200);
+	tweliteModule.begin(Serial2);
+	tweliteModule.on();
 }
 
 void loop() {
@@ -37,7 +39,4 @@ void loop() {
 			Serial.println("received ReadyForCaptureAck");
 		}
 	}
-
-	// 10秒待機後に再送信
-	delay(10000);
 }
