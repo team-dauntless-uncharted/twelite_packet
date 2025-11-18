@@ -16,7 +16,7 @@ void TwelitePacket::on() {
 	delay(100);
 }
 
-void TwelitePacket::begin(HardwareSerial &serial, int baud) {
+void TwelitePacket::begin(HardwareSerial &serial) {
 	pinMode(_resetPin, OUTPUT);
 	delay(100);
 	_serial = &serial;

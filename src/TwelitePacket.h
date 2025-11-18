@@ -80,9 +80,8 @@ public:
 	/**
 	 * @brief シリアル通信の初期化
 	 * @param serial 使用するHardwareSerialオブジェクト（Serial, Serial1等）
-	 * @param baud ボーレート（通信速度）
 	 */
-	void begin(HardwareSerial &serial, int baud);
+	void begin(HardwareSerial &serial);
 	
 	/**
 	 * @brief パケット送信
