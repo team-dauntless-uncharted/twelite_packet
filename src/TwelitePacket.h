@@ -20,10 +20,11 @@ namespace twelite {
  */
 enum MessageType {
 	DeployComplete      = 0x01, // 展開完了信号
-    ReadyForCapture     = 0x02, // 撮影準備完了（離陸許可）
-    ReadyForCaptureAck  = 0x03, // 撮影準備返信
-    TurnSignal          = 0x04, // 旋回信号	
+  ReadyForCapture     = 0x02, // 撮影準備完了（離陸許可）
+  ReadyForCaptureAck  = 0x03, // 撮影準備返信
+  TurnSignal          = 0x04, // 旋回信号
 	MovementDirection 	= 0x05, // 進行方向（ヘディング・速度 等）
+	WhereAmI = 0x06, // 自身のGNSS座標
 };
 
 /**
