@@ -68,6 +68,10 @@ namespace twelite
 
 	bool TwelitePacket::receivePacket(Packet &packet)
 	{
+		while (_serial->available() > 0 && _serial->peek() != PACKET_HEADER)
+		{
+			_serial->read(); // 取り出すだけ、変数に入れない = 捨てる
+		}
 		// 最低限必要なバイト数（ヘッダ+送信元+宛先+メッセージ種別+ペイロード長+チェックサム）をチェック
 		if (_serial->available() < 6)
 		{

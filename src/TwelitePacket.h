@@ -50,7 +50,7 @@ struct Packet {
 	uint8_t sender;						// 送信元デバイスID
 	uint8_t receiver;					// 宛先デバイスID
 	uint8_t messageType;				// メッセージ種別（MessageType enum参照）
-	uint8_t payloadLength;				// ペイロード長（0-32バイト）
+	uint8_t payloadLength;				// ペイロード長（0-32バイト)
 	uint8_t payload[MAX_PAYLOAD_SIZE];	// ペイロードデータ
 	uint8_t checksum;					// チェックサム（データ整合性確認用）
 };
