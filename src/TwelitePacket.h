@@ -30,6 +30,14 @@ namespace twelite
 		FormationRollCall = 0x07,	 // 点呼
 		FormationReady = 0x08,		 // 準備完了
 		FormationCommand = 0x09,	 // リーダーからの動作指令
+		// --- 時刻同期（TimeSyncState） ---
+		SyncPing     = 0x10,  // リーダー→全機: {T1: uint32_t}
+		SyncPong     = 0x11,  // フォロワー→リーダー: {T1, T2, T3: uint32_t}
+		SyncResult   = 0x12,  // リーダー→フォロワー: {offset_ms: int32_t}
+		SyncAck      = 0x13,  // フォロワー→リーダー: {}
+		SyncComplete = 0x14,  // リーダー→全機: {}
+		// --- 協調走行（DriveState） ---
+		DriveCommand = 0x20,  // リーダー→全機: {execute_at_ms: uint32_t, cmd: uint8_t, duration_ms: uint16_t}
 	};
 
 	/**
